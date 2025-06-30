@@ -1,0 +1,36 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+button {
+    color: #FFFFFA;
+    background-color: #FF4242;
+    border-style: none;
+    border-radius: 20px;
+    padding: 10px 25px;
+    margin: auto;
+    font-size: 40px;
+}
+
+button:hover {
+    background-color: #E63939;
+}
+
+button:active {
+background-color: #CC2F2F;
+}
+
+.container {
+    display: flex;
+    height: 50vh;
+}
+
+.container.score {
+    flex-direction: column;
+    align-items: center;
+    font-size: 40px;  
+}
+
+.result {
+    margin-bottom: 40px;
+}
