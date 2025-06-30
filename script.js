@@ -1,3 +1,5 @@
+let rounds = 5, humanScore = 0, computerScore = 0;
+
 function getComputerChoice () {
     let choice = Math.floor(Math.random() * 3);
     
@@ -11,43 +13,42 @@ function getComputerChoice () {
 }
 
 function playRound(humanChoice, computerChoice) {
-let humanScore = 0, computerScore = 0;
+  let humanScore = 0, computerScore = 0;
+  if (humanChoice === computerChoice) {
+      return "Tie!";
+  }
 
-if (humanChoice === computerChoice) {
-    return "Tie!";
-}
-
-switch (humanChoice) {
+  switch (humanChoice) {
     case "rock":
       if (computerChoice === "scissors") {
         humanScore++;
-        return "You win! Rock beats Scissors.";
+        return "You win! Rock beats Scissors";
       } else {
         computerScore++;
-        return "You lose! Paper beats Rock.";
+        return "You lose! Paper beats Rock";
       }
 
     case "paper":
       if (computerChoice === "rock") {
         humanScore++;
-        return "You win! Paper beats Rock.";
+        return "You win! Paper beats Rock";
         
       } else {
         computerScore++;
-        return "You lose! Scissors beats Paper.";
+        return "You lose! Scissors beats Paper";
       }
 
     case "scissors":
       if (computerChoice === "paper") {
         humanScore++;
-        return "You win! Scissors beats Paper.";
+        return "You win! Scissors beats Paper";
       } else {
         computerScore++;
-        return "You lose! Rock beats Scissors."; 
+        return "You lose! Rock beats Scissors"; 
       }
 
     default:
-      return "Invalid choice. Please choose rock, paper, or scissors.";
+      return "Invalid choice. Please choose rock, paper, or scissors";
   }
 }
 
@@ -56,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   buttons.forEach(button => {
     button.addEventListener('click', (e) => {
-      e.target.style.cssText = "background-color: #06D6A0";
+      e.target.style.cssText = 'background-color: #06D6A0';
     });
   });
 });
@@ -67,18 +68,31 @@ document.addEventListener('DOMContentLoaded', () => {
 
   buttons.forEach(button => {
     button.addEventListener('click', (e) => {
-      let outcome = playRound(e.target.className, getComputerChoice());
-      
-      if (outcome.includes("You win!")) {
+      let winner = playRound(e.target.className, getComputerChoice());
+      let humanScoreDisplay = document.querySelector('.human-score');
+      let computerScoreDisplay = document.querySelector('.computer-score');
+      let outcome = "";
+
+      if (winner.includes("You win!")) {
         result.style.cssText = "color: #06D6A0";
-      } else if (outcome.includes("You lose!")) {
-        result.style.cssText = "color: #FF4242";
+        outcome = winner.replace("You win!", "");
+        humanScoreDisplay.textContent = `Human score: ${humanScore}`;
+        computerScoreDisplay.textContent = `Computer score: ${computerScore}`;
+        humanScore++;
+      } else if (winner.includes("You lose!")) {
+        result.style.cssText = 'color: #FF4242';
+        outcome = winner.replace("You lose!", "");
+        humanScoreDisplay.textContent = `Human score: ${humanScore}`;
+        computerScoreDisplay.textContent = `Computer score: ${computerScore}`;
+        computerScore++;
       } else {
-        result.style.cssText = "color: #080F0F";
+        outcome = winner;
+        humanScoreDisplay.textContent = `Human score: ${humanScore}`;
+        computerScoreDisplay.textContent = `Computer score: ${computerScore}`;
+        result.style.cssText = 'color: #080F0F';
       }
+
       result.textContent = outcome;
     });
   });
 });
-
-
