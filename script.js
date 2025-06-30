@@ -12,6 +12,17 @@ function getComputerChoice () {
     }
 }
 
+function playRound() {
+  if (humanScore === 5 && computerScore === 5) {
+    return "It's a draw!";
+  } else if (humanScore > computerScore) {
+      return "You Win! Hooray!";
+  } else if (computerScore > humanScore) {
+      return "You Lose! Hahaha!";
+  }
+  return;
+}
+
 function playRound(humanChoice, computerChoice) {
   let humanScore = 0, computerScore = 0;
   if (humanChoice === computerChoice) {
@@ -52,15 +63,6 @@ function playRound(humanChoice, computerChoice) {
   }
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-  const buttons = document.querySelectorAll('button');
-
-  buttons.forEach(button => {
-    button.addEventListener('click', (e) => {
-      e.target.style.cssText = 'background-color: #06D6A0';
-    });
-  });
-});
 
 document.addEventListener('DOMContentLoaded', () => {
   const buttons = document.querySelectorAll('button');
@@ -76,22 +78,21 @@ document.addEventListener('DOMContentLoaded', () => {
       if (winner.includes("You win!")) {
         result.style.cssText = "color: #06D6A0";
         outcome = winner.replace("You win!", "");
+        humanScore++;
         humanScoreDisplay.textContent = `Human score: ${humanScore}`;
         computerScoreDisplay.textContent = `Computer score: ${computerScore}`;
-        humanScore++;
       } else if (winner.includes("You lose!")) {
         result.style.cssText = 'color: #FF4242';
         outcome = winner.replace("You lose!", "");
+        computerScore++;
         humanScoreDisplay.textContent = `Human score: ${humanScore}`;
         computerScoreDisplay.textContent = `Computer score: ${computerScore}`;
-        computerScore++;
       } else {
         outcome = winner;
         humanScoreDisplay.textContent = `Human score: ${humanScore}`;
         computerScoreDisplay.textContent = `Computer score: ${computerScore}`;
         result.style.cssText = 'color: #080F0F';
       }
-
       result.textContent = outcome;
     });
   });
