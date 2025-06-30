@@ -12,7 +12,6 @@ function getComputerChoice () {
 
 function getHumanChoice() {
     let input = prompt("Rock, Paper, or Scissors?");
-    
     return input;
 }
 
@@ -62,18 +61,6 @@ function playGame() {
               console.log("Invalid choice. Please choose rock, paper, or scissors.");
               break;
           }
-    }
-
-    for (let i = 0; i < 5; i++) {
-        playRound(getHumanChoice(), getComputerChoice());
-    }
-
-    if (humanScore === computerScore) {
-        console.log("Both of you tied!")
-    } else if (humanScore > computerScore) {
-        console.log("Hooray! The human wins!")
-    } else {
-        console.log("Computer wins!")
     }
 }
 
