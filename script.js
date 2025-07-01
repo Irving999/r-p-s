@@ -96,14 +96,17 @@ document.addEventListener('DOMContentLoaded', () => {
       gameWinner = checkWinner();
 
       // Show outcome or final result
-      if (gameWinner !== undefined) {
-        result.style.cssText = gameWinner.includes("You Win!")
-          ? 'color: #06D6A0'
-          : 'color: #FF4242';
+      if (gameWinner) {
+        result.style.color = gameWinner.includes("You Win!") ? '#06D6A0' : '#FF4242';
         result.textContent = gameWinner;
+      
+        // Disable buttons
+        buttons.forEach(button => button.disabled = true);
       } else {
         result.textContent = outcome;
       }
+
+      
     });
   });
 });
